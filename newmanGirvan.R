@@ -1,9 +1,8 @@
 library(igraph)
 
+# Read in file and create i-graph.
 tvshows <- read.csv("tvshow_edges.csv")
-
 tvshows <-tvshows+1
-
 g <- graph_from_edgelist(as.matrix(tvshows),directed=FALSE)
 
 # Make example graph.
@@ -12,7 +11,9 @@ g <- graph_from_edgelist(as.matrix(tvshows),directed=FALSE)
 
 # wtc <- cluster_walktrap(g)
 
-
+# GirvanNewman algorithm to find communities.
+# param g: igraph graph
+# return: graph whose disconnected components represent each community
 girvanNewman <- function(g) {
   
   # Find modularity
@@ -22,7 +23,10 @@ girvanNewman <- function(g) {
   mod <- modularity(g, communities$membership)
   prevMod <- mod
   
-  while(mod >= prevMod) {
+  maxIterations <- 1000000
+  iteration <- 1
+  while(mod <= prevMod & iteration < maxIterations) {
+    iteration <- iteration +1
     
     # Calcualte betweenness
     betweeness <- edge.betweenness(g)
@@ -30,9 +34,9 @@ girvanNewman <- function(g) {
     # Delete the edges with maximum betweenness
     toDelete <- E(g)[which(max(betweeness)==betweeness)]
     
-    if(length(toDelete) > 1) {
-      print("Two or more edges with a high score!")
-    }
+    # Randomly choose 1 edge to delete.
+    toDelete <- sample(toDelete,1)
+
     
     prevg <- g
     g <- delete.edges(g,toDelete)
@@ -52,13 +56,3 @@ girvanNewman <- function(g) {
   
   return(prevg)
 }
-
-
-
-
-
-
-
-
-
-
