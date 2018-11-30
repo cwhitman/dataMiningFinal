@@ -25,7 +25,7 @@ girvanNewman <- function(g) {
   
   maxIterations <- 1000000
   iteration <- 1
-  while(mod <= prevMod & iteration < maxIterations) {
+  while(mod >= prevMod & iteration < maxIterations) {
     iteration <- iteration +1
     
     # Calcualte betweenness
