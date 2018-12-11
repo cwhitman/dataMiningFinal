@@ -1,10 +1,10 @@
-library(igraph)
+source('groupEdgeBetweeness.R')
 
 #' GirvanNewman revised Algorithm
 #' @param g igraph graph to mazimize.
 #' @return a list containing the resulting graph, modularity values per iterations, and number of edges with the highest edge betweenness score per iteration.
 girvanNewmanRevised <- function(g) {
-  
+  require(igraph)
   # Find modularity
   communities <- components(g)
   prevCommunities <- communities
