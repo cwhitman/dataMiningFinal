@@ -8,7 +8,7 @@ Implements the Girvan-Newman Clustering Algorithm and two improved versions.
 
  - originalGirvanNewman.R implements the original algorithm described [here](https://arxiv.org/abs/cond-mat/0308217).
 
- - improvedGirvanNewman.R implements an improved version of the algorithm described [here](Community structure in networks: Girvan-Newman algorithm improvement).
+ - improvedGirvanNewman.R implements an improved version of the algorithm described [here](https://ieeexplore.ieee.org/document/6859714).
 
  - revisedGirvanNewman.R implments an improved version of the algorithm described [here](http://ceur-ws.org/Vol-1649/200.pdf). This algorithm uses groupEdgeBetweeness.R to calculate the group edge betweeness scores.
 
